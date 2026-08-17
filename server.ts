@@ -7,8 +7,17 @@ import { errorHandler } from './backend/src/middleware/errorHandler.js';
 import { runMigrations } from './backend/src/database/migrate.js';
 import { seedDatabase } from './backend/src/database/seed.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let __filename: string;
+let __dirname: string;
+
+try {
+  __filename = fileURLToPath(import.meta.url);
+  __dirname = path.dirname(__filename);
+} catch (e) {
+  // Fallback for CommonJS bundled version
+  __filename = __filename || process.argv[1];
+  __dirname = path.dirname(__filename);
+}
 
 async function startServer() {
   // Run database migrations and seeding on boot
