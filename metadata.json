@@ -1,0 +1,6 @@
+{
+  "name": "AllCardStation",
+  "description": "A modern digital gift-card marketplace with Supabase PostgreSQL persistence, user authentication, customer profile management, favorites, recipient directory, live customer support console, and admin-only system diagnostic suite.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
