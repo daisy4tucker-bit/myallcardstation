@@ -15,8 +15,16 @@ try {
   __dirname = path.dirname(__filename);
 } catch (e) {
   // Fallback for CommonJS bundled version
-  __filename = __filename || process.argv[1];
+  __filename = process.argv[1] || process.cwd();
   __dirname = path.dirname(__filename);
+}
+
+// Ensure we're in the right directory for production
+if (process.env.NODE_ENV === 'production') {
+  // When bundled, __dirname points to dist/, so go up one level
+  if (__dirname.includes('dist')) {
+    __dirname = path.dirname(__dirname);
+  }
 }
 
 async function startServer() {
@@ -58,9 +66,12 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(__dirname, 'dist');
+    console.log('Serving static files from:', distPath);
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const indexPath = path.join(distPath, 'index.html');
+      console.log('Attempting to serve index.html from:', indexPath);
+      res.sendFile(indexPath);
     });
   }
 
