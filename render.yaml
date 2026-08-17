@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: myallcardstation
-    buildCommand: npm install && npx prisma generate && npm run build
-    startCommand: node dist/server.cjs
