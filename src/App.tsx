@@ -11,7 +11,6 @@ import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { ScrollToTop } from './components/utils/ScrollToTop';
-import { SupportChatWidget } from './components/support/SupportChatWidget';
 
 // Pages
 import { Home } from './pages/Home';
@@ -70,7 +69,6 @@ export default function App() {
               </Routes>
             </div>
             <Footer />
-            <SupportChatWidget />
           </div>
         </BrowserRouter>
       </AuthProvider>
@@ -78,4 +76,5 @@ export default function App() {
   </ThemeProvider>
   );
 }
+
 
